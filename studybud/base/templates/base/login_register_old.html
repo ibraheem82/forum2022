@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+{% block content %}
+  
+<!-- we are checking if the page is login -->
+<!-- if it is login it will render the login page -->
+<!-- else it will render the register page -->
+<!-- the page from our views.py -->
+{% if page == 'login' %}
+    
+    
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Enter Username" />
+        <label>Password:</label>
+        <input type="text" name="password" placeholder="Enter Password " />
+        <input type="submit" value="Login">
+    </form>
+    <p>havent signed up yet?</p>
+    <a href="{% url 'register' %}">Sign Up</a>
+</div>
+
+{% else %}
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+         {{form.as_p}}
+        <input type="submit" value="Register">
+        <p>Aready signed up yet?</p>
+    <a href="{% url 'login' %}">Login</a>
+    </form>
+</div>
+{% endif %}
+
+
+{% endblock %}
